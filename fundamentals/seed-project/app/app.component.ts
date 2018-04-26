@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   selector: 'app-root', // creates the element in the HTML
   styleUrls: ['app.component.scss'], // array that contains a reference to a scss file
   template: `
-    <div class='app'>
+    <div>
     {{ title }} 
     </div>
   ` // ES6 feature that allows multiple line strings
