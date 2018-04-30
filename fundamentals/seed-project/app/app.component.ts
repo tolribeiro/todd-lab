@@ -9,12 +9,15 @@ import { Component } from '@angular/core';
   template: `
     <div>
       {{ title + '!'}} 
+      <h1 [innerHTML]="title"></h1>
+      <img [src]="logo">
       <div>
         {{ numberOne + numberTwo }}
       </div>
       <div>
         {{ isHappy ? ':)' : ':(' }}
       </div>
+      <input type="text" [value]="name">
     </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
@@ -30,6 +33,8 @@ export class AppComponent {
   isHappy: boolean = false;
   numberOne: number = 1;
   numberTwo: number = 2;
+  logo: string = 'img/logo.svg';
+  name: string = 'Thiago';
   // We can do just that, since we are using TS
   title: string; // setting the static property
   // However, we could also do
