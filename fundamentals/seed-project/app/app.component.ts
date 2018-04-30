@@ -8,10 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'], // array that contains a reference to a scss file
   template: `
     <div>
-    {{ title }} 
+      {{ title + '!'}} 
+      <div>
+        {{ numberOne + numberTwo }}
+      </div>
+      <div>
+        {{ isHappy ? ':)' : ':(' }}
+      </div>
     </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
+  // {{ expression }}
 })
 
 // Interpolation {{}}
@@ -19,10 +26,15 @@ import { Component } from '@angular/core';
 // It holds metadata for a particular component (in this case App Component)
 
 export class AppComponent {
+  // Obs.: with expressions we can mix and match the types we want to use
+  isHappy: boolean = false;
+  numberOne: number = 1;
+  numberTwo: number = 2;
   // We can do just that, since we are using TS
   title: string; // setting the static property
   // However, we could also do
   constructor() {
     this.title = 'Angular Lab';
   }
+  // Interpolation allows to essentially bind specific properties
 }
