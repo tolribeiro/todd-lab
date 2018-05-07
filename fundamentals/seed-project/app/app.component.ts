@@ -17,7 +17,15 @@ import { Component } from '@angular/core';
       <div>
         {{ isHappy ? ':)' : ':(' }}
       </div>
-      <input type="text" [value]="name">
+      <input 
+        type="text" 
+        [value]="name"
+        (input)="handleInput($event)"
+        (blur)="handleBlur($event)">
+      <div>{{ name }}</div>
+      <button (click)="handleClick()"> 
+        Change name
+      </button>
     </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
@@ -34,12 +42,27 @@ export class AppComponent {
   numberOne: number = 1;
   numberTwo: number = 2;
   logo: string = 'img/logo.svg';
-  name: string = 'Thiago';
+  name: string = 'Thiago';  
   // We can do just that, since we are using TS
+  handleBlur(event: any) {
+    this.name = event.target.value;
+    console.log(event);
+  }
+  handleInput(event: any) {
+    this.name = event.target.value;
+  }
+  handleClick() {
+    this.name = 'Ribeiro';
+  }
   title: string; // setting the static property
   // However, we could also do
   constructor() {
     this.title = 'Angular Lab';
   }
   // Interpolation allows to essentially bind specific properties
+
+  // Property binding is the square bracket notation that allows us to 
+  // bind to particular properties on an element.
+
+  // Now we're going to learn how to use event binding;
 }
