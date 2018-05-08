@@ -1,4 +1,9 @@
 import { Component } from '@angular/core'; 
+import { FormsModule } from '@angular/forms';
+// Used for us to do some two-way data binding
+// Two-way data binding is usually OK when you got a local component;
+// However, if you want to emit a change, you should do use one-way data flow
+// and emit the change with an event listener; 
 
 // 'Component' -> decorator
 // The Component is a function, but as it has a decorator
@@ -19,7 +24,7 @@ import { Component } from '@angular/core';
       </div>
       <input 
         type="text" 
-        [value]="name"
+        [ngModel]="name"
         (input)="handleInput($event)"
         (blur)="handleBlur($event)">
       <div>{{ name }}</div>
@@ -42,7 +47,7 @@ export class AppComponent {
   numberOne: number = 1;
   numberTwo: number = 2;
   logo: string = 'img/logo.svg';
-  name: string = 'Thiago';  
+  name: string = 'Ribeiro';  
   // We can do just that, since we are using TS
   handleBlur(event: any) {
     this.name = event.target.value;

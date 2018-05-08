@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'
 
 // The best way to think about a module is similarly to import and include statements
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 // A module is nothing more than a container that has all of our components and any
 // dependencies that that we need such as services for HTTP etc.
@@ -18,7 +19,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
