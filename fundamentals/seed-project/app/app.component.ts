@@ -25,16 +25,25 @@ import { FormsModule } from '@angular/forms';
       <input 
         type="text" 
         [ngModel]="name"
-        (input)="handleInput($event)"
+        (ngModelChange)="handleChange($event)"
         (blur)="handleBlur($event)">
+      <input 
+        type="text" 
+        [(ngModel)]="last">
       <div>{{ name }}</div>
-      <button (click)="handleClick()"> 
-        Change name
+      <div>{{ last }}</div>
+      <button (click)="handleClickRef(username.value)"> 
+        Get Value
       </button>
+
+      <input type="text" #username>
     </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
   // {{ expression }}
+
+  // A Ref allows us to create a reference to a particular DOM node 
+  // which is accessible anywhere in our template
 })
 
 // Interpolation {{}}
@@ -48,17 +57,8 @@ export class AppComponent {
   numberTwo: number = 2;
   logo: string = 'img/logo.svg';
   name: string = 'Ribeiro';  
+  last: string = 'Thiago';
   // We can do just that, since we are using TS
-  handleBlur(event: any) {
-    this.name = event.target.value;
-    console.log(event);
-  }
-  handleInput(event: any) {
-    this.name = event.target.value;
-  }
-  handleClick() {
-    this.name = 'Ribeiro';
-  }
   title: string; // setting the static property
   // However, we could also do
   constructor() {
@@ -70,4 +70,18 @@ export class AppComponent {
   // bind to particular properties on an element.
 
   // Now we're going to learn how to use event binding;
+  handleBlur(event: any) {
+    this.name = event.target.value;
+    console.log(event);
+  }
+  handleChange(value: any) {
+    this.name = value;
+  }
+  handleClick() {
+    this.name = 'Ribeiro';
+  }
+
+  handleClickRef(value: string) {
+    console.log(value);
+  }
 }
