@@ -37,6 +37,10 @@ import { FormsModule } from '@angular/forms';
       </button>
 
       <input type="text" #username>
+
+      <div *ngIf="name.length">
+        Searching for... {{ name }} 
+      </div>
     </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
@@ -56,7 +60,7 @@ export class AppComponent {
   numberOne: number = 1;
   numberTwo: number = 2;
   logo: string = 'img/logo.svg';
-  name: string = 'Ribeiro';  
+  name: string = '';  
   last: string = 'Thiago';
   // We can do just that, since we are using TS
   title: string; // setting the static property
@@ -74,9 +78,11 @@ export class AppComponent {
     this.name = event.target.value;
     console.log(event);
   }
+
   handleChange(value: any) {
     this.name = value;
   }
+
   handleClick() {
     this.name = 'Ribeiro';
   }
