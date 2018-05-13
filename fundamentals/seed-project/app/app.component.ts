@@ -8,6 +8,13 @@ import { FormsModule } from '@angular/forms';
 // 'Component' -> decorator
 // The Component is a function, but as it has a decorator
 // which is a TS feature, to register with Angular just use @
+
+interface Passenger {
+  id: number;
+  fullname: string;
+  checkedIn: boolean;
+}
+
 @Component({
   selector: 'app-root', // creates the element in the HTML
   styleUrls: ['app.component.scss'], // array that contains a reference to a scss file
@@ -42,6 +49,15 @@ import { FormsModule } from '@angular/forms';
         Searching for... {{ name }} 
       </div>
     </div>
+
+    <div class="app">
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+          {{ i }}: {{ passenger.fullname }}
+        </li>
+      </ul>
+    </div>
   ` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
   // {{ expression }}
@@ -55,6 +71,27 @@ import { FormsModule } from '@angular/forms';
 // It holds metadata for a particular component (in this case App Component)
 
 export class AppComponent {
+  passengers: Passenger[] = [{
+    id: 1,
+    fullname: 'Stephen',
+    checkedIn: true 
+  }, {
+    id: 2,
+    fullname: 'Newton',
+    checkedIn: true 
+  }, {
+    id: 3,
+    fullname: 'Hawking',
+    checkedIn: false
+  }, {
+    id: 4,
+    fullname: 'Lattes',
+    checkedIn: true 
+  }, {
+    id: 5,
+    fullname: 'Einstein',
+    checkedIn: false
+  }]
   // Obs.: with expressions we can mix and match the types we want to use
   isHappy: boolean = false;
   numberOne: number = 1;
