@@ -62,8 +62,17 @@ interface Passenger {
           {{ i }}: {{ passenger.fullname }}
         </li>
       </ul>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+          <span 
+            class="status"
+            [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '#c0392cb')"></span>
+          {{ i }}: {{ passenger.fullname }}
+        </li>
+      </ul>
     </div>
-  ` // ES6 feature that allows multiple line strings
+` // ES6 feature that allows multiple line strings
   // We can also use a templateUrl and reference the file
   // {{ expression }}
 
