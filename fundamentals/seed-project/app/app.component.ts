@@ -13,6 +13,7 @@ interface Passenger {
   id: number;
   fullname: string;
   checkedIn: boolean;
+  checkInDate?: number;
 }
 
 @Component({
@@ -60,6 +61,10 @@ interface Passenger {
               'checked-in' : passenger.checkedIn,
               'checked-out' : !passenger.checkedIn }"></span>
           {{ i }}: {{ passenger.fullname }}
+          <p>{{ passenger | json }}</p>
+          <div class="date">
+              Check in date: {{ passenger.checkInDate | date: 'yMMMMd' | uppercase}}
+          </div>
         </li>
       </ul>
       <h3>Airline Passengers</h3>
@@ -88,7 +93,8 @@ export class AppComponent {
   passengers: Passenger[] = [{
     id: 1,
     fullname: 'Stephen',
-    checkedIn: true 
+    checkedIn: true,
+    checkInDate: 1490742000000
   }, {
     id: 2,
     fullname: 'Newton',
@@ -141,4 +147,6 @@ export class AppComponent {
   handleClickRef(value: string) {
     console.log(value);
   }
+
+  // Pipes can be defined as a function that return something new
 }
