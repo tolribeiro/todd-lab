@@ -9,11 +9,17 @@ import { FormsModule } from '@angular/forms';
 // The Component is a function, but as it has a decorator
 // which is a TS feature, to register with Angular just use @
 
+interface Child {
+  name: string,
+  age: number
+}
+
 interface Passenger {
-  id: number;
-  fullname: string;
-  checkedIn: boolean;
-  checkInDate?: number;
+  id: number,
+  fullname: string,
+  checkedIn: boolean,
+  checkInDate: number | null,
+  children?: Child[]
 }
 
 @Component({
@@ -65,6 +71,9 @@ interface Passenger {
           <div class="date">
               Check in date: {{ passenger.checkInDate | date: 'yMMMMd' | uppercase}}
           </div>
+          <div class="children">
+              Children: {{ passenger.children?.length || 0 }}
+          </div>
         </li>
       </ul>
       <h3>Airline Passengers</h3>
@@ -94,23 +103,28 @@ export class AppComponent {
     id: 1,
     fullname: 'Stephen',
     checkedIn: true,
-    checkInDate: 1490742000000
+    checkInDate: 1490742000000,
+    children: [{ name: 'Thiago', age: 27 }]
   }, {
     id: 2,
     fullname: 'Newton',
-    checkedIn: true 
+    checkedIn: true,
+    checkInDate: 1490742000000
   }, {
     id: 3,
     fullname: 'Hawking',
-    checkedIn: false
+    checkedIn: false,
+    checkInDate: 1490742000000
   }, {
     id: 4,
     fullname: 'Lattes',
-    checkedIn: true 
+    checkedIn: true,
+    checkInDate: 1490742000000
   }, {
     id: 5,
     fullname: 'Einstein',
-    checkedIn: false
+    checkedIn: false,
+    checkInDate: 1490742000000
   }]
   // Obs.: with expressions we can mix and match the types we want to use
   isHappy: boolean = false;
