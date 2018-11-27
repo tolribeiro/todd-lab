@@ -23,75 +23,12 @@ interface Passenger {
 }
 
 @Component({
-  selector: 'app-root', // creates the element in the HTML
-  styleUrls: ['app.component.scss'], // array that contains a reference to a scss file
+  selector: 'app-root', 
+  styleUrls: ['app.component.scss'],
   template: `
-    <div>
-      {{ title + '!'}} 
-      <h1 [innerHTML]="title"></h1>
-      <img [src]="logo">
-      <div>
-        {{ numberOne + numberTwo }}
-      </div>
-      <div>
-        {{ isHappy ? ':)' : ':(' }}
-      </div>
-      <input 
-        type="text" 
-        [ngModel]="name"
-        (ngModelChange)="handleChange($event)"
-        (blur)="handleBlur($event)">
-      <input 
-        type="text" 
-        [(ngModel)]="last">
-      <div>{{ name }}</div>
-      <div>{{ last }}</div>
-      <button (click)="handleClickRef(username.value)"> 
-        Get Value
-      </button>
-
-      <input type="text" #username>
-
-      <div *ngIf="name.length">
-        Searching for... {{ name }} 
-      </div>
-    </div>
-
     <div class="app">
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-          <span 
-            class="status"
-            [ngClass]="{ 
-              'checked-in' : passenger.checkedIn,
-              'checked-out' : !passenger.checkedIn }"></span>
-          {{ i }}: {{ passenger.fullname }}
-          <p>{{ passenger | json }}</p>
-          <div class="date">
-              Check in date: {{ passenger.checkInDate | date: 'yMMMMd' | uppercase}}
-          </div>
-          <div class="children">
-              Children: {{ passenger.children?.length || 0 }}
-          </div>
-        </li>
-      </ul>
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-          <span 
-            class="status"
-            [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '#c0392cb')"></span>
-          {{ i }}: {{ passenger.fullname }}
-        </li>
-      </ul>
-    </div>
-` // ES6 feature that allows multiple line strings
-  // We can also use a templateUrl and reference the file
-  // {{ expression }}
-
-  // A Ref allows us to create a reference to a particular DOM node 
-  // which is accessible anywhere in our template
+      <passenger-dashboard></passenger-dashboard>
+    </div>`
 })
 
 // Interpolation {{}}
@@ -99,68 +36,4 @@ interface Passenger {
 // It holds metadata for a particular component (in this case App Component)
 
 export class AppComponent {
-  passengers: Passenger[] = [{
-    id: 1,
-    fullname: 'Stephen',
-    checkedIn: true,
-    checkInDate: 1490742000000,
-    children: [{ name: 'Thiago', age: 27 }]
-  }, {
-    id: 2,
-    fullname: 'Newton',
-    checkedIn: true,
-    checkInDate: 1490742000000
-  }, {
-    id: 3,
-    fullname: 'Hawking',
-    checkedIn: false,
-    checkInDate: 1490742000000
-  }, {
-    id: 4,
-    fullname: 'Lattes',
-    checkedIn: true,
-    checkInDate: 1490742000000
-  }, {
-    id: 5,
-    fullname: 'Einstein',
-    checkedIn: false,
-    checkInDate: 1490742000000
-  }]
-  // Obs.: with expressions we can mix and match the types we want to use
-  isHappy: boolean = false;
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  logo: string = 'img/logo.svg';
-  name: string = '';  
-  last: string = 'Thiago';
-  // We can do just that, since we are using TS
-  title: string; // setting the static property
-  // However, we could also do
-  constructor() {
-    this.title = 'Angular Lab';
-  }
-  // Interpolation allows to essentially bind specific properties
-
-  // Property binding is the square bracket notation that allows us to 
-  // bind to particular properties on an element.
-
-  // Now we're going to learn how to use event binding;
-  handleBlur(event: any) {
-    this.name = event.target.value;
-    console.log(event);
-  }
-
-  handleChange(value: any) {
-    this.name = value;
-  }
-
-  handleClick() {
-    this.name = 'Ribeiro';
-  }
-
-  handleClickRef(value: string) {
-    console.log(value);
-  }
-
-  // Pipes can be defined as a function that return something new
 }
