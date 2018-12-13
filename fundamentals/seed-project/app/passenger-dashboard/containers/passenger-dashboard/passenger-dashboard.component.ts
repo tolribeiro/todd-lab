@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface'
 
 @Component({
@@ -6,6 +6,10 @@ import { Passenger } from '../../models/passenger.interface'
     styleUrls: ['passenger-dashboard.component.scss'],
     template: `
         <div>
+            <passenger-count
+                [items]="passengers">
+            </passenger-count>
+            <passenger-detail></passenger-detail>
             <h3>Airline Passengers</h3>
             <ul>
                 <li *ngFor="let passenger of passengers; let i = index">
@@ -27,32 +31,37 @@ import { Passenger } from '../../models/passenger.interface'
     `
 })
 
-export class PassengerDashboardComponent {
-    passengers: Passenger[] = [{
-        id: 1,
-        fullname: 'Stephen',
-        checkedIn: true,
-        checkInDate: 1490742000000,
-        children: [{ name: 'Thiago', age: 27 }]
-      }, {
-        id: 2,
-        fullname: 'Newton',
-        checkedIn: true,
-        checkInDate: 1490742000000
-      }, {
-        id: 3,
-        fullname: 'Hawking',
-        checkedIn: false,
-        checkInDate: 1490742000000
-      }, {
-        id: 4,
-        fullname: 'Lattes',
-        checkedIn: true,
-        checkInDate: 1490742000000
-      }, {
-        id: 5,
-        fullname: 'Einstein',
-        checkedIn: false,
-        checkInDate: 1490742000000
-      }]
+export class PassengerDashboardComponent implements OnInit {
+    passengers: Passenger[];
+    constructor() {}
+    ngOnInit() {
+        console.log('ngOnInit');
+        this.passengers = [{
+            id: 1,
+            fullname: 'Stephen',
+            checkedIn: true,
+            checkInDate: 1490742000000,
+            children: [{ name: 'Thiago', age: 27 }]
+          }, {
+            id: 2,
+            fullname: 'Newton',
+            checkedIn: true,
+            checkInDate: 1490742000000
+          }, {
+            id: 3,
+            fullname: 'Hawking',
+            checkedIn: false,
+            checkInDate: 1490742000000
+          }, {
+            id: 4,
+            fullname: 'Lattes',
+            checkedIn: true,
+            checkInDate: 1490742000000
+          }, {
+            id: 5,
+            fullname: 'Einstein',
+            checkedIn: false,
+            checkInDate: 1490742000000
+          }];
+    }
 }
