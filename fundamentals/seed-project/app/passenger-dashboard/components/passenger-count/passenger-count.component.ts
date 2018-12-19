@@ -7,7 +7,7 @@ import { Passenger } from '../../models/passenger.interface';
         <div>
             <h3>Airline Passengers!</h3>
             <div>
-                Total checked in: {{ items.length }}
+                Total checked in: {{ checkedInCount() }} / {{ items.length }}
             </div>
         </div>
     `
@@ -15,6 +15,9 @@ import { Passenger } from '../../models/passenger.interface';
 
 export class PassengerCountComponent {
     @Input() items: Passenger[];
-    constructor() {}
+    checkedInCount(): number {
+        if (!this.items) return;
+        return this.items.filter((passenger: Passenger) => passenger.checkedIn).length;
+    }
 }
 
